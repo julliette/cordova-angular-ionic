@@ -1,0 +1,8 @@
+objc[26148]: Class AXEmojiUtilities is implemented in both /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/System/Library/PrivateFrameworks/AccessibilityUtilities.framework/AccessibilityUtilities and /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/usr/lib/libAXSpeechManager.dylib. One of the two will be used. Which one is undefined.
+2014-01-27 16:41:30.799 Dinner[26148:80b] Cannot find executable for CFBundle 0xab6c2e0 </Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/System/Library/AccessibilityBundles/CertUIFramework.axbundle> (not loaded)
+2014-01-27 16:41:30.832 Dinner[26148:80b] Cannot find executable for CFBundle 0xab8de70 </Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator7.0.sdk/System/Library/AccessibilityBundles/GeoServices.axbundle> (not loaded)
+2014-01-27 16:41:30.901 Dinner[26148:80b] Multi-tasking -> Device: YES, App: YES
+2014-01-27 16:41:30.911 Dinner[26148:80b] Unlimited access to network resources
+2014-01-27 16:41:31.547 Dinner[26148:80b] Resetting plugins due to page load.
+2014-01-27 16:41:32.580 Dinner[26148:80b] Finished load of: file:///Users/julliette/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/AB18439D-EFE7-4F34-94AB-B9FB30AC29CA/Dinner.app/www/index.html
+2014-01-27 16:41:34.250 Dinner[26148:80b] THREAD WARNING: ['Device'] took '1242.258057' ms. Plugin should use a background thread.
