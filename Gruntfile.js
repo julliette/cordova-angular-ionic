@@ -11,6 +11,7 @@ module.exports = function (grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
+//  grunt.loadNpmTasks('grunt-protractor-runner');
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -29,14 +30,14 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all'],
+        tasks: ['newer:jshint:all', 'karma:watch:run'],
         options: {
           livereload: true
         }
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        tasks: ['newer:jshint:test', 'karma:watch:run']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -143,7 +144,8 @@ module.exports = function (grunt) {
     'bower-install': {
       app: {
         html: '<%= yeoman.app %>/index.html',
-        ignorePath: '<%= yeoman.app %>/'
+        ignorePath: '<%= yeoman.app %>/',
+        exclude: ['bower_components/ionic/dist/js/angular', 'bower_components/ionic/dist/js/angular-ui']
       }
     },
 
@@ -173,6 +175,11 @@ module.exports = function (grunt) {
         }
       },
       server: {
+        options: {
+          debugInfo: true
+        }
+      },
+      test: {
         options: {
           debugInfo: true
         }
@@ -308,7 +315,7 @@ module.exports = function (grunt) {
         'compass:server'
       ],
       test: [
-        'compass'
+        'compass:test'
       ],
       dist: [
         'compass:dist',
@@ -348,6 +355,26 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
+      },
+      watch: {
+        configFile: 'karma.conf.js',
+        background: true
+      }
+    },
+
+    // e2e test settings
+    protractor: {
+      options: {
+        configFile: "test/e2e/protractor.conf.base.js"
+      },
+      chrome: {
+        configFile: "test/e2e/protractor.conf.chromium.js"
+      },
+      firefox: {
+        configFile: "test/e2e/protractor.conf.firefox.js"
+      },
+      phantom: {
+        configFile: "test/e2e/protractor.conf.phantomjs.js"
       }
     }
   });
@@ -373,13 +400,36 @@ module.exports = function (grunt) {
     grunt.task.run(['serve']);
   });
 
-  grunt.registerTask('test', [
+  grunt.registerTask('test:unit', [
     'clean:server',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+    'karma:unit'
   ]);
+
+  grunt.registerTask('test:watch', [
+    'clean:server',
+    'concurrent:test',
+    'autoprefixer',
+    'connect:test',
+    'watch:jsTest'
+  ]);
+
+  grunt.registerTask('test:e2e', [
+    'clean:server',
+    'concurrent:server',
+    'autoprefixer',
+    'connect:livereload',
+    'protractor'
+  ]);
+  // grunt.registerTask('test', [
+  //   'clean:server',
+  //   'concurrent:test',
+  //   'autoprefixer',
+  //   'connect:test',
+  //   'karma'
+  // ]);
 
   grunt.registerTask('build', [
     'clean:dist',

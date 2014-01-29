@@ -5,3 +5,4 @@ dist
 www/bower_components
 platforms/android/assets
 platforms/ios/www
+.DS_Store

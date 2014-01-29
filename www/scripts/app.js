@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dinnerApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize'
+  'ngRoute',
+  'ngSanitize',
+  'ionic'
 ]);
