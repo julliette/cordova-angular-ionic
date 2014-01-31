@@ -16,29 +16,29 @@ Usage
 ### Getting set up
 Install your node packages and bower libraries:
 
-  npm install
-  bower install
+    npm install
+    bower install
 
 ### Run your karma unit tests
 
-  grunt test:unit
+    grunt test:unit
 
 ### Run your karma unit tests continuously
 
-  grunt karma:watch watch
+    grunt karma:watch watch
 
 ### Run your e2e tests with protractor 
 This will run the e2e tests against Chromium, FireFox and PhantomJS.
 
 This task assumes an external Selenium server. The configuration can be changed in the test/e2e/protractor.conf.base.js file.
 
-  grunt test:e2e
+    grunt test:e2e
 
 ### Run your server
 
-  grunt serve
+    grunt serve
 
 ### Run this in an emulator
 
-  cordova build <ios/android>
-  cordova emulate <ios/android>
+    cordova build <ios/android>
+    cordova emulate <ios/android>
