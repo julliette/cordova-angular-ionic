@@ -365,16 +365,16 @@ module.exports = function (grunt) {
     // e2e test settings
     protractor: {
       options: {
-        configFile: "test/e2e/protractor.conf.base.js"
+        configFile: 'test/e2e/protractor.conf.base.js'
       },
       chrome: {
-        configFile: "test/e2e/protractor.conf.chromium.js"
+        configFile: 'test/e2e/protractor.conf.chromium.js'
       },
       firefox: {
-        configFile: "test/e2e/protractor.conf.firefox.js"
+        configFile: 'test/e2e/protractor.conf.firefox.js'
       },
       phantom: {
-        configFile: "test/e2e/protractor.conf.phantomjs.js"
+        configFile: 'test/e2e/protractor.conf.phantomjs.js'
       }
     }
   });
