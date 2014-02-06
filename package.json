@@ -1,7 +1,8 @@
 {
   "name": "dinner",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-cli": "~0.1.13",
@@ -43,12 +44,14 @@
     "karma-phantomjs-launcher": "~0.1.1",
     "karma": "~0.10.9",
     "karma-ng-html2js-preprocessor": "~0.1.0",
-    "karma-junit-reporter":"0.1.0",
+    "karma-junit-reporter": "0.1.0",
     "karma-coverage": "0.1.0",
     "forever": "~0.10.11",
     "yo": "~1.1.2",
     "generator-angular": "~0.7.1",
-    "protractor": "~0.17.0"
+    "protractor": "~0.17.0",
+    "grunt-preprocess": "~4.0.0",
+    "grunt-env": "~0.4.1"
   },
   "engines": {
     "node": ">=0.8.0"

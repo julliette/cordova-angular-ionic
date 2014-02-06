@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>You know it!</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -20,13 +20,13 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="dinnerApp">
+  <body ng-app="rampageApp">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-include="'views/main.html'" ng-controller="MainCtrl"></div>
+    <div class="container" ng-include="'views/tasks.html'" ng-controller="TaskController"></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -54,13 +54,27 @@
     <script src="bower_components/fastclick/lib/fastclick.js"></script>
     <script src="bower_components/ionic/dist/js/ionic.js"></script>
     <script src="bower_components/ionic/dist/js/ionic-angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <!-- @if NODE_ENV='production' -->
+        <script src="scripts/app-consts-prod.js"></script>
+        <!-- @endif -->
+        <!-- @if NODE_ENV='development' -->
+        <script src="scripts/app-consts-dev.js"></script>
+        <!-- @endif -->
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/tasks/controllers.js"></script>
+        <script src="scripts/tasks/services.js"></script>
         <!-- endbuild -->
+
+        <!-- @if e2e='mock' -->
+        <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+        <script src="scripts/mocks/e2e-mocks.js"></script>
+        <!-- @endif -->
 
     <!-- Needed for Cordova/PhoneGap -->
     <script type="text/javascript" src="cordova.js"></script>

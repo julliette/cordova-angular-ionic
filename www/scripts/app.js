@@ -1,7 +1,10 @@
 'use strict';
 
-angular.module('dinnerApp', [
+angular.module('rampageApp', [
+  'rampageAppConsts',
+  'ngResource',
   'ngRoute',
   'ngSanitize',
-  'ionic'
+  'ionic',
+  'angular-momentjs'
 ]);

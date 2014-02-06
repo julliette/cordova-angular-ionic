@@ -11,7 +11,6 @@ module.exports = function (grunt) {
 
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
-//  grunt.loadNpmTasks('grunt-protractor-runner');
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -24,6 +23,54 @@ module.exports = function (grunt) {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
       dist: 'dist'
+    },
+
+    // environment variables used in the preprocessing steps
+    env: {
+      dev: {
+        NODE_ENV : 'development'
+      },
+      prod: {
+        NODE_ENV : 'production'
+      },
+      test: {
+        NODE_ENV : 'test'
+      }
+    },
+
+    // environment specific configurations
+    preprocess: {
+      build: {
+        src: '<%= yeoman.app %>/index.base.html',
+        dest: '<%= yeoman.app %>/index.html',
+        options: {
+          context: {
+            e2e: 'no'
+          }
+        }
+      },
+      e2e_mock: {
+        options: {
+          context: {
+            e2e: 'mock'
+          }
+        },
+        files: [
+          {src: '<%= yeoman.app %>/index.base.html', dest: '<%= yeoman.app %>/index.html'},
+          {src: 'test/e2e/protractor.conf.base.template.js', dest: 'test/e2e/protractor.conf.base.js'}
+        ]
+      },
+      e2e_live: {
+        options: {
+          context: {
+            e2e: 'live'
+          }
+        },
+        files: [
+          {src: '<%= yeoman.app %>/index.base.html', dest: '<%= yeoman.app %>/index.html'},
+          {src: 'test/e2e/protractor.conf.base.template.js', dest: 'test/e2e/protractor.conf.base.js'}
+        ]
+      }
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -46,12 +93,17 @@ module.exports = function (grunt) {
       gruntfile: {
         files: ['Gruntfile.js']
       },
+      html: {
+        files: ['<%= yeoman.app %>/index.base.html'],
+        tasks: ['preprocess:build', 'bower-install', 'autoprefixer']
+      },
       livereload: {
         options: {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
+          '<%= yeoman.app %>/views/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -373,12 +425,13 @@ module.exports = function (grunt) {
       firefox: {
         configFile: 'test/e2e/protractor.conf.firefox.js'
       },
-      phantom: {
-        configFile: 'test/e2e/protractor.conf.phantomjs.js'
-      }
+      // phantom: {
+      //   configFile: 'test/e2e/protractor.conf.phantomjs.js'
+      // }
     }
   });
 
+  var environ = grunt.option('target') || 'dev';
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
@@ -387,6 +440,8 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'env:' + environ,
+      'preprocess:build',
       'bower-install',
       'concurrent:server',
       'autoprefixer',
@@ -400,39 +455,53 @@ module.exports = function (grunt) {
     grunt.task.run(['serve']);
   });
 
+  // run the unit tests once
   grunt.registerTask('test:unit', [
     'clean:server',
+    'preprocess:build',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
     'karma:unit'
   ]);
 
+  // run the unit tests and setup a watch
   grunt.registerTask('test:watch', [
     'clean:server',
+    'preprocess:build',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
     'watch:jsTest'
   ]);
 
-  grunt.registerTask('test:e2e', [
+  // run the e2e tests against a mock backend
+  grunt.registerTask('test:e2e_mock', [
     'clean:server',
+    'preprocess:e2e_mock',
+    'bower-install',
     'concurrent:server',
     'autoprefixer',
     'connect:livereload',
     'protractor'
   ]);
-  // grunt.registerTask('test', [
-  //   'clean:server',
-  //   'concurrent:test',
-  //   'autoprefixer',
-  //   'connect:test',
-  //   'karma'
-  // ]);
 
+  // run the e2e tests against the real backend 
+  grunt.registerTask('test:e2e_live', [
+    'clean:server',
+    'preprocess:e2e_live',
+    'bower-install',
+    'concurrent:server',
+    'autoprefixer',
+    'connect:livereload',
+    'protractor'
+  ]);
+
+  // build the full site
   grunt.registerTask('build', [
     'clean:dist',
+    'env:' + environ,
+    'preprocess:build',
     'bower-install',
     'useminPrepare',
     'concurrent:dist',
@@ -448,9 +517,11 @@ module.exports = function (grunt) {
     'htmlmin'
   ]);
 
+  // run the unit tests and then build
   grunt.registerTask('default', [
     'newer:jshint',
-    'test',
+    'test:unit',
+    'env:' + environ,
     'build'
   ]);
 };

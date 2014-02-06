@@ -57,7 +57,12 @@ exports.config = {
 
   // Spec patterns are relative to the location of this config.
   specs: [
-    '*.spec.js'
+    // @if e2e='mock'
+    '*.mock.spec.js'
+    // @endif
+    // @if e2e='live'
+    '*.live.spec.js'
+    // @endif
   ],
 
   // -----------------------------------------------------------------

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dinnerApp')
+angular.module('rampageApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
