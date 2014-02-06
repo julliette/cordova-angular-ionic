@@ -21,6 +21,6 @@ describe('Controller: MainCtrl', function () {
   });
 
   it('should still run the rest of the tests', function() {
-    expect(scope.awesomeThings[2]).toBe('Karma');
+    expect(scope.awesomeThings[2]).toBe('Karma!');
   });
 });

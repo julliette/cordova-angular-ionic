@@ -41,7 +41,7 @@ module.exports = function (grunt) {
     // environment specific configurations
     preprocess: {
       build: {
-        src: '<%= yeoman.app %>/index.base.html',
+        src: '<%= yeoman.app %>/index.template.html',
         dest: '<%= yeoman.app %>/index.html',
         options: {
           context: {
@@ -56,7 +56,7 @@ module.exports = function (grunt) {
           }
         },
         files: [
-          {src: '<%= yeoman.app %>/index.base.html', dest: '<%= yeoman.app %>/index.html'},
+          {src: '<%= yeoman.app %>/index.template.html', dest: '<%= yeoman.app %>/index.html'},
           {src: 'test/e2e/protractor.conf.base.template.js', dest: 'test/e2e/protractor.conf.base.js'}
         ]
       },
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
           }
         },
         files: [
-          {src: '<%= yeoman.app %>/index.base.html', dest: '<%= yeoman.app %>/index.html'},
+          {src: '<%= yeoman.app %>/index.template.html', dest: '<%= yeoman.app %>/index.html'},
           {src: 'test/e2e/protractor.conf.base.template.js', dest: 'test/e2e/protractor.conf.base.js'}
         ]
       }
@@ -94,7 +94,7 @@ module.exports = function (grunt) {
         files: ['Gruntfile.js']
       },
       html: {
-        files: ['<%= yeoman.app %>/index.base.html'],
+        files: ['<%= yeoman.app %>/index.template.html'],
         tasks: ['preprocess:build', 'bower-install', 'autoprefixer']
       },
       livereload: {
@@ -151,7 +151,6 @@ module.exports = function (grunt) {
         reporter: require('jshint-stylish')
       },
       all: [
-        'Gruntfile.js',
         '<%= yeoman.app %>/scripts/{,*/}*.js'
       ],
       test: {
@@ -303,7 +302,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= yeoman.dist %>',
-          src: ['*.html', 'views/{,*/}*.html'],
+          src: ['index.html', 'views/{,*/}*.html'],
           dest: '<%= yeoman.dist %>'
         }]
       }
@@ -325,7 +324,7 @@ module.exports = function (grunt) {
     // Replace Google CDN references
     cdnify: {
       dist: {
-        html: ['<%= yeoman.dist %>/*.html']
+        html: ['<%= yeoman.dist %>/index.html']
       }
     },
 
@@ -340,7 +339,7 @@ module.exports = function (grunt) {
           src: [
             '*.{ico,png,txt}',
             '.htaccess',
-            '*.html',
+            'index.html',
             'views/{,*/}*.html',
             'bower_components/**/*',
             'images/{,*/}*.{webp}',

@@ -21,6 +21,8 @@ module.exports = function(config) {
       'www/bower_components/fastclick/lib/fastclick.js',
       'www/bower_components/ionic/dist/js/ionic.js',
       'www/bower_components/ionic/dist/js/ionic-angular.js',
+      'www/bower_components/momentjs/moment.js',
+      'www/bower_components/angular-momentjs/angular-momentjs.js',
       'www/scripts/*.js',
       'www/scripts/**/*.js',
       'test/mock/**/*.js',
