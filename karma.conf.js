@@ -14,6 +14,7 @@ module.exports = function(config) {
       'www/bower_components/angular/angular.js',
       'www/bower_components/angular-mocks/angular-mocks.js',
       'www/bower_components/angular-route/angular-route.js',
+      'www/bower_components/angular-resource/angular-resource.js',
       'www/bower_components/angular-sanitize/angular-sanitize.js',
       'www/bower_components/angular-animate/angular-animate.js',
       'www/bower_components/angular-ui-router/release/angular-ui-router.js',

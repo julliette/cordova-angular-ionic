@@ -1,0 +1,19 @@
+<h1 class="header">Tasks</h1>
+<h3 ng-show="message != ''" class="message">{{message}}</h3>
+<h3 ng-show="tasks.length == 0" class="message">You have not created any tasks. </h3>
+<table ng-hide="tasks.length == 0">
+	<thead>
+		<tr>
+			<th>Content</th>
+			<th>Created Date</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="task in tasks|orderBy:'CreatedDate'">
+			<td>{{task.Content}}</td>
+			<td>{{task.CreatedDate | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+			<td>{{task.Status}}</td>
+		</tr>
+	</tbody>
+</table>
