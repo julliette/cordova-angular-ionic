@@ -3,6 +3,8 @@ dist
 .tmp
 .sass-cache
 www/bower_components
+www/index.html
+test/e2e/protractor.conf.base.js
 platforms/android/assets
 platforms/ios/www
 .DS_Store
