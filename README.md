@@ -14,14 +14,15 @@ This solution includes the following tools:
 
 This assumes that [Cordova](http://cordova.apache.org/) is installed on the local machine.
 
-Usage
+Getting set up
 ---
-### Getting set up
 Install your node packages and bower libraries:
 
     npm install
     bower install
 
+Usage
+---
 ### Run your karma unit tests
 
     grunt test:unit
@@ -55,3 +56,14 @@ This task assumes an external Selenium server. The configuration can be changed 
 
     cordova build <ios/android>
     cordova emulate <ios/android>
+
+If you experience errors (Windows hosts?)
+---
+if you see any errors when running the grunt tasks, run the following command while in the source folder:
+
+    npm ls
+
+This may tell you that there are unmet dependencies. Manually install those dependencies:
+
+    npm install delayed-stream@0.0.5
+    npm install graceful-fs@~2.0.0
